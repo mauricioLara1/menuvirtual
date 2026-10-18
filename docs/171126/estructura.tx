@@ -1,0 +1,22 @@
+menu-virtual/
+├── docs/                  = documentacion.txt y bitacora.txt
+├── db/                    = schema.sql y seed.sql
+├── docker-compose.yml
+├── backend/
+│   ├── src/
+│   │   ├── config/        = conexión a la BD, variables de entorno
+│   │   ├── routes/        = rutas (/productos, /login...)
+│   │   ├── controllers/   = lógica de cada ruta
+│   │   ├── middlewares/   = auth, roles, sucursal
+│   │   ├── schemas/       = validaciones con zod
+│   │   └── index.ts
+│   └── uploads/           = fotos de productos
+└── frontend/
+    └── src/
+        ├── api/           = llamadas con axios
+        ├── components/
+        ├── pages/
+        │   ├── public/    = menú
+        │   ├── admin/
+        │   └── owner/
+        └── hooks/

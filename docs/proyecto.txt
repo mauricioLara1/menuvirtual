@@ -1,0 +1,92 @@
+-menu virtual - doc
+
+-resumen:
+aplicacion web para gestion de menus con varias sucursales.
+divido en dos partes:
+menu publico: lo que ve el cliente final
+area adminstrativa: sistema para gestion de productos, descuentos y auditorias
+
+objetivo: un sistema simple y comodo para los usuarios al gestionar menus, precios, descuentos entre otros
+
+-vista general de funciones: 
+cliente -> frontend (react) -> api Express -> postgreSql
+admin -> frontend (react) -> login -> bd y carpeta de uploads(url de fotos)
+
+el front end no habla ocn la db, la db solo responde a la api
+api valida usuario y que puede hacer
+db no guarda imagenes, solo url
+
+-tipos de usuario:
+cliente final:
+no login o poderes, solo puede visualizar
+
+admin:
+tiene login para una sucursal
+gestiona las tablas: productos, descuentos
+
+owner:
+tiene un login
+crea admins a una sucursal
+tiene acceso a auditorias
+
+-pantallas:
+menu publico:
+se busca recrear el diseño clasico de los menu clasicos, con efectos simples que no incomoden o afecten la experiencia del cliente para que esten comodos
+cada producto consiste en:
+foto
+nombre
+descripccion
+precio
+
+panel admin:
+login
+Barra lateral izquierda para elegir la accion:
+-Agregar : formulario (nombre, descripcion, precio, categoria,foto).
+-Quitar  : tabla de productos con casillas para marcar y borrar.
+-Modificar: el mismo formulario de agregar, pero precargado con los datos actuales para reemplazarlos.
+-Descuentos: crear y asignar descuentos a productos.
+
+panel owner:
+login
+barra lateral izquierda:
+-agregar admin
+-eliminar admin
+-modificar admin
+-ver auditorias
+
+frontend:
+-React + Vite
+-React-router-dom (rutas)
+-axios (llamadas a la API)
+-react-hook-form (formularios)
+-@tanstack/react-query (cache y estados de carga)
+-react-hot-toast (mensajes)
+-Estilos: CSS Modules o Tailwind (por decidir)
+ 
+Backend:
+-Node.js + Express
+-express, cors, dotenv
+-Prisma (migraciones y acceso a la BD)
+-bcrypt (hash de claves)
+-jsonwebtoken (login), guardado en cookie httpOnly
+-cookie-parser
+-multer + sharp (subir y comprimir imagenes)
+-zod (validar lo que llega a la API)
+-helmet y express-rate-limit (seguridad, frena fuerza bruta)
+-pino (logs)
+ 
+Calidad:
+-TypeScript (frontend y backend)
+-ESLint + Prettier
+-vitest + supertest (pruebas del backend)
+ 
+Infraestructura:
+-Docker + docker compose
+-PostgreSQL 17 (imagen fija, no "latest")
+-pgAdmin 4 (interfaz para ver la BD)
+-Git
+ 
+Nota: el stack se considera cerrado. Lo que venga despues son
+funciones, no tecnologias nueva
+
+

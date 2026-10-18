@@ -1,0 +1,127 @@
+comandos de inicio proyecto
+
+construccion de estructura de archivos y carpter:
+
+ mkdir -p carpeta/sub
+    Crea carpetas. "-p" crea tambien las intermedias y no falla si ya
+    existen.
+ 
+ mkdir -p backend/src/{config,routes,controllers}
+    Las llaves { } crean varias carpetas de una vez.
+ 
+ mv origen destino
+    Mueve o renombra archivos. Ej: mv documentacion.txt docs/
+ 
+ cat > archivo <<'EOF' ... EOF
+    Crea un archivo escribiendo su contenido directamente desde la
+    terminal. Con 'EOF' entre comillas el texto se guarda tal cual;
+    sin comillas, se evaluan variables y comandos como (...).
+ 
+ cat archivo
+    Muestra el contenido de un archivo.
+ 
+ sed -i 's|texto viejo|texto nuevo|' archivo
+    Reemplaza texto dentro de un archivo. Se uso para cambiar los
+    puertos a 127.0.0.1.
+ 
+ sudo ss -tlnp | grep -E '5432|5433|5050'
+    Muestra que programas escuchan en esos puertos (sirve para
+    detectar conflictos).
+ 
+ dpkg -l | grep -Ei 'postgres|pgadmin'
+    Busca paquetes instalados con esos nombres.
+ 
+ sudo apt purge 'postgresql*' && sudo apt autoremove -y
+    Desinstala Postgres del sistema por completo y limpia
+    dependencias.
+ 
+ code ~/menu-virtual
+    Abre la carpeta del proyecto en VS Code. Abrir siempre la RAIZ,
+    no frontend ni backend por separado.
+ 
+ 
+intalacion de node y de npm:
+
+ node -v && npm -v
+    Muestran las versiones de Node y npm. Usar una version LTS.
+ 
+ nvm install --lts
+    Instala la version LTS de Node con nvm (gestor de versiones de
+    Node).
+ 
+ npm install
+    Instala las dependencias listadas en package.json.
+ 
+ npm install paquete
+    Instala una libreria y la agrega a package.json (dependencias).
+ 
+ npm install -D paquete
+    Igual, pero como dependencia de DESARROLLO (solo para programar,
+    no para ejecutar en produccion): TypeScript, pruebas, linters.
+ 
+ npm init -y
+    Crea un package.json basico sin hacer preguntas.
+ 
+ npx tsc --init
+    Genera tsconfig.json (configuracion de TypeScript).
+ 
+ npx comando
+    Ejecuta un comando de un paquete sin instalarlo globalmente.
+ 
+ 
+construccion de front end con react y vite
+ npm create vite@latest frontend -- --template react-ts
+    Crea el proyecto React con TypeScript en la carpeta "frontend".
+ 
+Librerias instaladas:
+  react-router-dom        rutas (/menu, /admin, /owner)
+  axios                   llamadas a la API
+  react-hook-form         formularios de agregar y modificar
+  @tanstack/react-query   cache y estados de carga de la API
+  react-hot-toast         mensajes emergentes ("producto guardado")
+ 
+Para ejecutar en desarrollo (cuando haya codigo):
+ npm run dev
+ 
+ 
+construccion de backend con node y express
+Librerias de ejecucion:
+  express             servidor web y API
+  cors                permite que el frontend llame a la API
+  dotenv              lee las variables del .env
+  bcrypt              hash de contrasenas
+  jsonwebtoken        tokens de login (JWT)
+  cookie-parser       lee cookies (el JWT ira en cookie httpOnly)
+  multer              recibe archivos subidos (fotos)
+  sharp               redimensiona y comprime imagenes
+  zod                 valida los datos que llegan a la API
+  helmet              cabeceras de seguridad HTTP
+  express-rate-limit  limita intentos (frena fuerza bruta en login)
+  pino                logs
+ 
+Librerias de desarrollo (-D):
+  typescript          el lenguaje
+  tsx                 ejecuta TypeScript directo, con recarga
+  @types/*            tipos de TypeScript para las librerias
+  (despues: eslint, prettier, vitest, supertest)
+ 
+Aviso "npm warn install-scripts" al instalar:
+  No es un error. npm 11.16+ avisa que algunos paquetes (bcrypt
+  compila codigo nativo; esbuild descarga un binario) ejecutan
+  scripts al instalarse, y que npm 12 los bloqueara por defecto.
+ 
+ npm approve-scripts --allow-scripts-pending
+    Solo LISTA los paquetes con scripts sin revisar. No cambia nada.
+ 
+ npm approve-scripts bcrypt esbuild
+    Aprueba solo esos paquetes y lo guarda en "allowScripts" dentro
+    de package.json. Aprobar solo lo que se reconozca; no usar --all
+    a ciegas.
+ 
+ npm deny-scripts <paquete>
+    Marca un paquete como bloqueado.
+ 
+Comprobaciones:
+ node -e "require('bcrypt'); console.log('bcrypt OK')"
+ npx tsx --version
+    Confirman que bcrypt y tsx quedaron funcionando. 

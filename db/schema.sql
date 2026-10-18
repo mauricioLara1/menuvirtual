@@ -1,0 +1,72 @@
+-- Esquema inicial del menu virtual.
+-- Ejecutar una sola vez sobre una base de datos vacia.
+CREATE TABLE sucursal (
+  id         INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  nombre     TEXT NOT NULL,
+  direccion  TEXT NOT NULL,
+  activo     BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE rol (
+  id           INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  nombre       TEXT NOT NULL UNIQUE,
+  descripcion  TEXT,
+  activo       BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE categoria (
+  id      INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  nombre  TEXT NOT NULL UNIQUE,
+  activo  BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE usuario (
+  id             INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  usuario        TEXT NOT NULL UNIQUE,
+  password_hash  TEXT NOT NULL,
+  rol_id         INT NOT NULL REFERENCES rol(id),
+  sucursal_id    INT REFERENCES sucursal(id),   -- NULL para el owner
+  activo         BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE producto (
+  id            INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  nombre        TEXT NOT NULL,
+  descripcion   TEXT,
+  precio        NUMERIC(10,2) NOT NULL CHECK (precio >= 0),
+  imagen_url    TEXT,
+  sucursal_id   INT NOT NULL REFERENCES sucursal(id),
+  categoria_id  INT NOT NULL REFERENCES categoria(id),
+  activo        BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at    TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX idx_producto_sucursal_activo ON producto (sucursal_id, activo);
+
+CREATE TABLE descuento (
+  id            INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  sucursal_id   INT NOT NULL REFERENCES sucursal(id),
+  nombre        TEXT NOT NULL,
+  tipo          TEXT NOT NULL CHECK (tipo IN ('PORCENTAJE', 'VALOR_FIJO')),
+  valor         NUMERIC(10,2) NOT NULL CHECK (valor > 0),
+  fecha_inicio  DATE NOT NULL,
+  fecha_fin     DATE NOT NULL,
+  activo        BOOLEAN NOT NULL DEFAULT TRUE,
+  CHECK (fecha_fin >= fecha_inicio)
+);
+
+CREATE TABLE descuento_producto (
+  descuento_id  INT NOT NULL REFERENCES descuento(id) ON DELETE CASCADE,
+  producto_id   INT NOT NULL REFERENCES producto(id)  ON DELETE CASCADE,
+  PRIMARY KEY (descuento_id, producto_id)
+);
+
+CREATE TABLE auditoria (
+  id           INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  usuario_id   INT NOT NULL REFERENCES usuario(id),
+  accion       TEXT NOT NULL CHECK (accion IN ('CREAR', 'EDITAR', 'ELIMINAR')),
+  entidad      TEXT NOT NULL,
+  entidad_id   INT NOT NULL,
+  descripcion  TEXT,
+  fecha        TIMESTAMPTZ NOT NULL DEFAULT now()
+);

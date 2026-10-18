@@ -1,0 +1,11 @@
+terminado:
+
+8 tablas creadas (db/schema.sql): sucursal, rol, usuario, categoria, producto, descuento, descuento_producto, auditoria.
+  
+"rol" quedo como tabla propia. Por eso la regla "el owner no tiene sucursal y el admin si" se valida en el backend, no en la BD.
+
+Datos de prueba cargados (db/seed.sql): 1 sucursal, 4 categorias, 8 productos, roles OWNER y ADMIN. Se ejecuta una sola vez.
+
+Usuario owner creado con la clave hasheada (bcrypt). La clave actual es debil: cambiarla antes de entregar a un cliente.
+
+Usuario de Postgres menu_app creado para el backend: solo lee, inserta, edita y borra FILAS; no toca la estructura. Su clave aleatoria esta en .env (menu_user queda para administrar).

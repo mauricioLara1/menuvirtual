@@ -1,0 +1,32 @@
+que creamos?
+api rest en node.js + express + typescript
+esta lee y escribe en PostgreSQL. 
+Por ahora cubre solo "producto" ya que es la plantilla que se repetira para categoria, sucursal, usuario y descuento.
+
+Corre en http://localhost:3000. 
+Se conecta a la BD como menu_app
+
+ejecutarla:
+en menuvirtual/backend correr un npm run dev
+
+
+backend/
+  package.json =dependencias y script "dev"
+  tsconfig.json =configuracion de TypeScript
+  src/
+    index.ts = arranca Express y conecta todo
+    config/db.ts =c onexion a PostgreSQL
+    routes/ = URLs -> funciones
+    controllers/ = reciben la peticion y responden
+    schemas/ = validaciones (zod)
+    repositories/ = unico lugar con SQL
+    middlewares/ = vacia: auth y roles vendran despues)
+  uploads/ = ( vacia: fotos, vendra despues)
+
+peticion:
+cliente en http:
+index.ts = ni idea como funciona
+routes = elige la funcion segun el metodo
+controler = valida id y cuerpo con el schema
+repository = ejecuta el sql con parametros
+PostgreSQL
