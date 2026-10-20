@@ -2,14 +2,17 @@ import express from 'express';
 import type { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import cookieParser from 'cookie-parser';
 import { pool } from './config/db';
+import authRoutes from './routes/auth.routes';
 import productosRoutes from './routes/productos.routes';
 
 const app = express();
 
 app.use(helmet());
-app.use(cors({ origin: 'http://localhost:5173' })); // el frontend de Vite
+app.use(cors({ origin: 'http://localhost:5173', credentials: true })); // el frontend de Vite
 app.use(express.json());
+app.use(cookieParser());
 
 // Comprueba que la API y la BD responden
 app.get('/api/health', async (_req, res) => {
@@ -21,6 +24,7 @@ app.get('/api/health', async (_req, res) => {
   }
 });
 
+app.use('/api', authRoutes);
 app.use('/api', productosRoutes);
 
 // Ruta que no existe

@@ -1,0 +1,41 @@
+avances 19 11 2026
+ 
+entrego:
+utils/http.ts: idValido, errorValidacion, manejarError
+(compartidas por todos los recursos).
+db.ts: conTransaccion() para guardar varias consultas juntas.
+precio con maximo 99999999.99 (antes desbordaba y daba 500).
+404 en JSON para rutas inexistentes y manejador de errores global
+(JSON mal formado -> 400, sin pagina de error de Express).
+Probado: health, lista (8), ruta inexistente, JSON roto, precio
+enorme, FK inexistente, y crear/modificar/borrar siguen bien.
+
+permisos: publico / ADMIN (su sucursal) / OWNER.
+guia-api-continuidad.txt: guia para que cualquiera (humano o IA)
+continue. Quedo escrita ANTES de las fases 0 y 1; hay que actualizarla.
+
+utils/http.ts: idValido, errorValidacion, manejarError (compartidas por todos los recursos).
+db.ts: conTransaccion() para guardar varias consultas juntas.
+precio con maximo 99999999.99 (antes desbordaba y daba 500).
+404 en JSON para rutas inexistentes y manejador de errores global
+(JSON mal formado -> 400, sin pagina de error de Express).
+Probado: health, lista (8), ruta inexistente, JSON roto, precio
+norme, FK inexistente, y crear/modificar/borrar siguen bien.
+
+config/env.ts: carga el .env y valida DATABASE_URL y JWT_SECRET.
+utils/token.ts: JWT HS256, 8 horas, el token solo lleva el id.
+repositories/usuarios.repo.ts: buscarParaLogin y obtenerSesion.
+middlewares/auth.ts: requireAuth (401) y requireRol (403).
+middlewares/limitador.ts: 10 intentos fallidos cada 15 min.
+controllers/auth.controller.ts y routes/auth.routes.ts:
+POST /api/auth/login, POST /api/auth/logout, GET /api/auth/me.
+index.ts: cookie-parser y CORS con credentials.
+JWT_SECRET agregado a .env y .env.example.
+Probado: limite de intentos (7 x 401 y luego 429).
+ 
+DECISIONES DE HOY
+El token solo lleva el id; rol y sucursal se leen de la BD en cada peticion (un cambio de rol, sucursal o desactivacion vale al instante).
+Cookie httpOnly + SameSite=Strict, 8 horas, secure solo en produccion.
+Login siempre responde "Credenciales invalidas" y compara contra un hash falso si el usuario no existe (no revela que usuarios existen).
+El limitador solo cuenta intentos fallidos.
+ 
