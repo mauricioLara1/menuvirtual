@@ -10,8 +10,9 @@ export async function listarPorSucursal(sucursalId: number, db: Db = pool) {
     `SELECT ${COLUMNAS}
        FROM producto p
        JOIN categoria c ON c.id = p.categoria_id
-      WHERE p.sucursal_id = $1 AND p.activo = true
-      ORDER BY c.nombre, p.nombre`,
+       JOIN sucursal s ON s.id = p.sucursal_id
+      WHERE p.sucursal_id = $1 AND p.activo = true AND s.activo = true
+      ORDER BY c.orden, c.nombre, p.nombre`,
     [sucursalId]
   );
   return rows;

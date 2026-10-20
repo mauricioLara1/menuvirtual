@@ -6,6 +6,8 @@ import cookieParser from 'cookie-parser';
 import { pool } from './config/db';
 import authRoutes from './routes/auth.routes';
 import productosRoutes from './routes/productos.routes';
+import categoriasRoutes from './routes/categorias.routes';
+import sucursalesRoutes from './routes/sucursales.routes';
 
 const app = express();
 
@@ -26,6 +28,8 @@ app.get('/api/health', async (_req, res) => {
 
 app.use('/api', authRoutes);
 app.use('/api', productosRoutes);
+app.use('/api', categoriasRoutes);
+app.use('/api', sucursalesRoutes);
 
 // Ruta que no existe
 app.use((_req, res) => {
