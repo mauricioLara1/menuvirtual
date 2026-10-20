@@ -59,3 +59,61 @@ body {
   display: flex; align-items: center; justify-content: center;
   background: var(--linea); color: var(--suave); font-size: 0.75rem;
 }
+
+/* ---------- Formularios ---------- */
+.pagina-angosta { max-width: 380px; }
+.formulario { display: grid; gap: 16px; margin-top: 24px; }
+.formulario label { display: grid; gap: 4px; font-size: 0.95rem; }
+.formulario input {
+  padding: 10px; font: inherit;
+  border: 1px solid var(--linea); border-radius: 6px; background: #fff;
+}
+.formulario button, .barra-lateral button {
+  padding: 10px 14px; font: inherit; cursor: pointer;
+  border: none; border-radius: 6px; background: var(--acento); color: #fff;
+}
+.formulario button:disabled, .barra-lateral button:disabled { opacity: 0.5; cursor: not-allowed; }
+.error-campo { color: #b00020; font-size: 0.85rem; }
+
+/* ---------- Panel admin ---------- */
+.panel { display: flex; min-height: 100vh; }
+.barra-lateral {
+  width: 220px; flex-shrink: 0; padding: 20px 16px;
+  display: flex; flex-direction: column; gap: 16px;
+  background: #fff; border-right: 1px solid var(--linea);
+}
+.barra-lateral h2 { margin: 0; }
+.barra-lateral nav { display: grid; gap: 8px; }
+.barra-lateral .salir { margin-top: auto; background: var(--suave); }
+.panel-contenido { flex: 1; padding: 24px; }
+
+@media (max-width: 640px) {
+  .panel { flex-direction: column; }
+  .barra-lateral { width: auto; border-right: none; border-bottom: 1px solid var(--linea); }
+}
+
+/* ---------- Panel: navegación, tabla y formulario ancho ---------- */
+.quien { margin: 0; font-size: 0.85rem; color: var(--suave); }
+.selector-sucursal { display: grid; gap: 4px; font-size: 0.9rem; }
+.selector-sucursal select, .formulario select, .formulario textarea {
+  padding: 10px; font: inherit;
+  border: 1px solid var(--linea); border-radius: 6px; background: #fff;
+}
+.barra-lateral nav a {
+  display: block; padding: 10px 14px; border-radius: 6px;
+  color: #fff; background: var(--acento); text-decoration: none;
+}
+.barra-lateral nav a.active { background: var(--tinta); }
+.enlace-menu { font-size: 0.9rem; color: var(--acento); }
+
+.formulario-ancho { max-width: 480px; }
+.botones-fila { display: flex; align-items: center; gap: 16px; }
+
+.barra-acciones { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.barra-acciones h1 { margin: 0; }
+.peligro { padding: 10px 14px; font: inherit; cursor: pointer; border: none; border-radius: 6px; background: #b00020; color: #fff; }
+.peligro:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.tabla { width: 100%; margin-top: 16px; border-collapse: collapse; background: #fff; }
+.tabla th, .tabla td { padding: 10px; text-align: left; border-bottom: 1px solid var(--linea); }
+.tabla th { font-size: 0.85rem; color: var(--suave); }

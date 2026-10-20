@@ -14,3 +14,15 @@ export interface Producto {
   categoria: string;
   sucursal_id: number;
 }
+
+export interface UsuarioSesion {
+  id: number;
+  usuario: string;
+  rol: 'OWNER' | 'ADMIN';
+  sucursal_id: number | null;
+}
+
+export interface Categoria {
+  id: number;
+  nombre: string;
+}
