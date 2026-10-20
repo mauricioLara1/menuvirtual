@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const productoSchema = z.object({
   nombre: z.string().trim().min(1).max(100),
   descripcion: z.string().trim().max(500).nullish(),
-  precio: z.number().min(0),
+  precio: z.number().min(0).max(99999999.99),
   imagen_url: z.string().trim().max(300).nullish(),
   categoria_id: z.number().int().positive(),
   sucursal_id: z.number().int().positive(),

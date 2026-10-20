@@ -1,27 +1,7 @@
 import type { Request, Response } from 'express';
 import * as repo from '../repositories/productos.repo';
 import { productoSchema, productoUpdateSchema } from '../schemas/productos.schema';
-
-function idValido(valor: unknown): number | null {
-  const n = Number(valor);
-  return Number.isInteger(n) && n > 0 ? n : null;
-}
-
-function manejarError(res: Response, err: any) {
-  // 23503 = violación de llave foránea (categoría o sucursal inexistente)
-  if (err?.code === '23503') {
-    return res.status(400).json({ error: 'La categoría o la sucursal no existe' });
-  }
-  console.error(err); // el detalle queda en el servidor, no se envía al cliente
-  return res.status(500).json({ error: 'Error interno del servidor' });
-}
-
-function errorValidacion(res: Response, issues: { path: PropertyKey[]; message: string }[]) {
-  return res.status(400).json({
-    error: 'Datos inválidos',
-    detalles: issues.map((i) => ({ campo: i.path.join('.'), mensaje: i.message })),
-  });
-}
+import { idValido, errorValidacion, manejarError } from '../utils/http';
 
 export async function listar(req: Request, res: Response) {
   const sucursalId = idValido(req.params.sucursalId);
