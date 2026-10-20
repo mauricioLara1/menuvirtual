@@ -1,111 +1,61 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --fondo: #faf6ef;
+  --tinta: #2b2118;
+  --suave: #7a6a5a;
+  --acento: #8a3b12;
+  --linea: #e3d9c8;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
+  background: var(--fondo);
+  color: var(--tinta);
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.5;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+.pagina {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+.titulo { margin: 0; font-size: 2rem; text-align: center; }
+.direccion { margin: 4px 0 0; text-align: center; color: var(--suave); }
+.encabezado { margin-bottom: 32px; }
+.aviso { text-align: center; color: var(--suave); margin-top: 32px; }
+
+.lista-sucursales { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 12px; }
+.tarjeta-sucursal {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 16px; border: 1px solid var(--linea); border-radius: 8px;
+  color: inherit; text-decoration: none; background: #fff;
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+.tarjeta-sucursal span { color: var(--suave); }
+
+.categoria { margin-bottom: 32px; }
+.categoria-titulo {
+  margin: 0 0 8px; padding-bottom: 8px;
+  font-size: 1.4rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--acento); border-bottom: 2px solid var(--acento);
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+.producto {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+  padding: 16px 0; border-bottom: 1px dashed var(--linea);
 }
+.producto-texto { flex: 1; min-width: 0; }
+.producto-nombre { margin: 0; font-size: 1.1rem; }
+.producto-desc { margin: 4px 0 0; color: var(--suave); font-size: 0.95rem; }
+.producto-precio { margin: 8px 0 0; font-weight: bold; color: var(--acento); }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.producto-foto {
+  width: 96px; height: 96px; flex-shrink: 0;
+  object-fit: cover; border-radius: 8px;
+}
+.producto-sin-foto {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--linea); color: var(--suave); font-size: 0.75rem;
 }
