@@ -9,6 +9,8 @@ import FormularioProducto from './paginas/admin/FormularioProducto';
 import Sucursales from './paginas/admin/Sucursales';
 import Categorias from './paginas/admin/Categorias';
 import Descuentos from './paginas/admin/Descuentos';
+import Usuarios from './paginas/admin/Usuarios';
+import MiClave from './paginas/admin/MiClave';
 
 export default function App() {
   return (
@@ -31,6 +33,8 @@ export default function App() {
         <Route path="sucursales" element={<RutaProtegida roles={["OWNER"]}><Sucursales /></RutaProtegida>} />
         <Route path="categorias" element={<RutaProtegida roles={["OWNER"]}><Categorias /></RutaProtegida>} />
         <Route path="descuentos" element={<Descuentos />} />
+        <Route path="usuarios" element={<RutaProtegida roles={["OWNER"]}><Usuarios /></RutaProtegida>} />
+        <Route path="mi-clave" element={<MiClave />} />
       </Route>
       <Route path="*" element={<p className="aviso">Página no encontrada.</p>} />
     </Routes>

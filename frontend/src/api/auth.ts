@@ -21,3 +21,7 @@ export async function obtenerSesionActual(): Promise<UsuarioSesion | null> {
     throw e;
   }
 }
+
+export async function cambiarMiClave(actual: string, nueva: string): Promise<void> {
+  await api.put('/auth/password', { actual, nueva });
+}

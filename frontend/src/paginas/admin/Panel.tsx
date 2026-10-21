@@ -50,6 +50,8 @@ export default function Panel() {
           <NavLink to="/admin/descuentos">Descuentos</NavLink>
           {esOwner && <NavLink to="/admin/sucursales">Sucursales</NavLink>}
           {esOwner && <NavLink to="/admin/categorias">Categorías</NavLink>}
+          {esOwner && <NavLink to="/admin/usuarios">Usuarios</NavLink>}
+          <NavLink to="/admin/mi-clave">Mi contraseña</NavLink>
         </nav>
 
         {sucursalId && <Link className="enlace-menu" to={`/menu/${sucursalId}`}>Ver menú público</Link>}
