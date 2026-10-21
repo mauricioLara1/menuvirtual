@@ -47,7 +47,7 @@ export default function Panel() {
         <nav>
           <NavLink to="/admin/productos/nuevo">Agregar producto</NavLink>
           <NavLink to="/admin/productos" end>Modificar / Quitar</NavLink>
-          <button type="button" disabled>Descuentos</button>
+          <NavLink to="/admin/descuentos">Descuentos</NavLink>
           {esOwner && <NavLink to="/admin/sucursales">Sucursales</NavLink>}
           {esOwner && <NavLink to="/admin/categorias">Categorías</NavLink>}
         </nav>

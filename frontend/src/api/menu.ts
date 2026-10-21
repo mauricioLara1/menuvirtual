@@ -1,5 +1,5 @@
 import { api } from './cliente';
-import type { Producto, Sucursal } from './tipos';
+import type { Producto, ProductoMenu, Sucursal } from './tipos';
 
 export async function listarSucursales(): Promise<Sucursal[]> {
   const { data } = await api.get('/sucursales');
@@ -13,5 +13,10 @@ export async function obtenerSucursal(id: number): Promise<Sucursal> {
 
 export async function listarProductos(sucursalId: number): Promise<Producto[]> {
   const { data } = await api.get(`/sucursales/${sucursalId}/productos`);
+  return data;
+}
+
+export async function listarMenu(sucursalId: number): Promise<ProductoMenu[]> {
+  const { data } = await api.get(`/sucursales/${sucursalId}/menu`);
   return data;
 }

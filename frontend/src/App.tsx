@@ -8,6 +8,7 @@ import ListaProductos from './paginas/admin/ListaProductos';
 import FormularioProducto from './paginas/admin/FormularioProducto';
 import Sucursales from './paginas/admin/Sucursales';
 import Categorias from './paginas/admin/Categorias';
+import Descuentos from './paginas/admin/Descuentos';
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="productos/:id/editar" element={<FormularioProducto />} />
         <Route path="sucursales" element={<RutaProtegida roles={["OWNER"]}><Sucursales /></RutaProtegida>} />
         <Route path="categorias" element={<RutaProtegida roles={["OWNER"]}><Categorias /></RutaProtegida>} />
+        <Route path="descuentos" element={<Descuentos />} />
       </Route>
       <Route path="*" element={<p className="aviso">Página no encontrada.</p>} />
     </Routes>

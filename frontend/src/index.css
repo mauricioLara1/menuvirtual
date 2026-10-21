@@ -135,3 +135,24 @@ body {
 .fila-form button:disabled { opacity: 0.5; cursor: not-allowed; }
 .boton-enlace { padding: 0; margin-right: 12px; font: inherit; cursor: pointer; border: none; background: none; color: var(--acento); text-decoration: underline; }
 .boton-enlace.rojo { color: #b00020; }
+
+/* ---------- Descuentos en el menú ---------- */
+.precio-anterior { text-decoration: line-through; color: var(--suave); font-weight: normal; }
+.etiqueta-descuento {
+  display: inline-block; padding: 1px 6px; border-radius: 4px;
+  background: var(--acento); color: #fff; font-size: 0.75rem; font-weight: normal;
+}
+
+/* ---------- Pantalla de descuentos ---------- */
+.lista-productos-check {
+  display: grid; gap: 6px; margin-top: 12px; padding: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  border: 1px solid var(--linea); border-radius: 6px; background: #fff;
+}
+.opcion-producto { display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+.opcion-producto small { color: var(--suave); }
+.fila-form select { padding: 10px; font: inherit; border: 1px solid var(--linea); border-radius: 6px; background: #fff; }
+.chip { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; }
+.estado-vigente { background: #d8f0dc; color: #1b5e20; }
+.estado-programado { background: #fdf0cc; color: #7a5a00; }
+.estado-vencido { background: #e6e1d8; color: var(--suave); }

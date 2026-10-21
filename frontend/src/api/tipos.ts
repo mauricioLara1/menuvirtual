@@ -26,3 +26,8 @@ export interface Categoria {
   id: number;
   nombre: string;
 }
+
+export interface ProductoMenu extends Producto {
+  precio_final: number;
+  descuento: { nombre: string; tipo: 'PORCENTAJE' | 'VALOR_FIJO'; valor: number } | null;
+}
