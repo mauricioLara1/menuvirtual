@@ -59,3 +59,11 @@ export async function desactivar(id: number, db: Db = pool) {
   );
   return (rowCount ?? 0) > 0;
 }
+
+export async function actualizarImagen(id: number, imagenUrl: string, db: Db = pool): Promise<boolean> {
+  const r = await db.query(
+    'UPDATE producto SET imagen_url = $2, updated_at = now() WHERE id = $1 AND activo = true',
+    [id, imagenUrl],
+  );
+  return (r.rowCount ?? 0) > 0;
+}

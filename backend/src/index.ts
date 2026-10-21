@@ -8,6 +8,10 @@ import authRoutes from './routes/auth.routes';
 import productosRoutes from './routes/productos.routes';
 import categoriasRoutes from './routes/categorias.routes';
 import sucursalesRoutes from './routes/sucursales.routes';
+import imagenesRoutes from './routes/imagenes.routes';
+import descuentosRoutes from './routes/descuentos.routes';
+import menuRoutes from './routes/menu.routes';
+import { DIR_UPLOADS } from './config/uploads';
 
 const app = express();
 
@@ -30,6 +34,10 @@ app.use('/api', authRoutes);
 app.use('/api', productosRoutes);
 app.use('/api', categoriasRoutes);
 app.use('/api', sucursalesRoutes);
+app.use('/api', imagenesRoutes);
+app.use('/api', descuentosRoutes);
+app.use('/api', menuRoutes);
+app.use('/uploads', express.static(DIR_UPLOADS, { index: false, dotfiles: 'ignore', maxAge: '7d', immutable: true }));
 
 // Ruta que no existe
 app.use((_req, res) => {

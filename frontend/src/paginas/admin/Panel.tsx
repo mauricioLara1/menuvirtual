@@ -16,7 +16,7 @@ export default function Panel() {
   const esOwner = usuario?.rol === 'OWNER';
   // El ADMIN siempre trabaja en su sucursal; el OWNER elige.
   const sucursalId = esOwner
-    ? (elegida ?? sucursales.data?.[0]?.id ?? null)
+    ? (sucursales.data?.find((s) => s.id === elegida)?.id ?? sucursales.data?.[0]?.id ?? null)
     : (usuario?.sucursal_id ?? null);
 
   const contexto: ContextoPanel = { sucursalId };
@@ -48,6 +48,8 @@ export default function Panel() {
           <NavLink to="/admin/productos/nuevo">Agregar producto</NavLink>
           <NavLink to="/admin/productos" end>Modificar / Quitar</NavLink>
           <button type="button" disabled>Descuentos</button>
+          {esOwner && <NavLink to="/admin/sucursales">Sucursales</NavLink>}
+          {esOwner && <NavLink to="/admin/categorias">Categorías</NavLink>}
         </nav>
 
         {sucursalId && <Link className="enlace-menu" to={`/menu/${sucursalId}`}>Ver menú público</Link>}

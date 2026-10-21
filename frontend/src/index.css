@@ -117,3 +117,21 @@ body {
 .tabla { width: 100%; margin-top: 16px; border-collapse: collapse; background: #fff; }
 .tabla th, .tabla td { padding: 10px; text-align: left; border-bottom: 1px solid var(--linea); }
 .tabla th { font-size: 0.85rem; color: var(--suave); }
+
+/* ---------- Vista previa de la foto ---------- */
+.vista-previa { width: 160px; height: 160px; object-fit: cover; border-radius: 8px; }
+.vista-vacia {
+  width: 160px; height: 160px; display: flex; align-items: center; justify-content: center;
+  border-radius: 8px; background: var(--linea); color: var(--suave); font-size: 0.85rem;
+}
+
+/* ---------- Páginas del owner ---------- */
+.tarjeta-form { margin: 16px 0 24px; padding: 16px; background: #fff; border: 1px solid var(--linea); border-radius: 8px; }
+.tarjeta-form h2 { margin: 0 0 12px; font-size: 1.1rem; }
+.fila-form { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; }
+.fila-form label { display: grid; gap: 4px; font-size: 0.95rem; flex: 1; min-width: 160px; }
+.fila-form input { padding: 10px; font: inherit; border: 1px solid var(--linea); border-radius: 6px; background: #fff; }
+.fila-form button { padding: 10px 14px; font: inherit; cursor: pointer; border: none; border-radius: 6px; background: var(--acento); color: #fff; }
+.fila-form button:disabled { opacity: 0.5; cursor: not-allowed; }
+.boton-enlace { padding: 0; margin-right: 12px; font: inherit; cursor: pointer; border: none; background: none; color: var(--acento); text-decoration: underline; }
+.boton-enlace.rojo { color: #b00020; }

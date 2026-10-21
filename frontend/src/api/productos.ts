@@ -27,3 +27,10 @@ export async function actualizarProducto(id: number, datos: DatosProducto): Prom
 export async function eliminarProducto(id: number): Promise<void> {
   await api.delete(`/productos/${id}`);
 }
+
+export async function subirImagen(id: number, archivo: File): Promise<{ imagen_url: string }> {
+  const formulario = new FormData();
+  formulario.append('imagen', archivo);
+  const { data } = await api.post(`/productos/${id}/imagen`, formulario);
+  return data;
+}
