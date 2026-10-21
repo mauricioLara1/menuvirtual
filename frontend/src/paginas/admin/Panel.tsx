@@ -51,6 +51,7 @@ export default function Panel() {
           {esOwner && <NavLink to="/admin/sucursales">Sucursales</NavLink>}
           {esOwner && <NavLink to="/admin/categorias">Categorías</NavLink>}
           {esOwner && <NavLink to="/admin/usuarios">Usuarios</NavLink>}
+          {esOwner && <NavLink to="/admin/auditoria">Auditoría</NavLink>}
           <NavLink to="/admin/mi-clave">Mi contraseña</NavLink>
         </nav>
 

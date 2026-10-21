@@ -17,6 +17,7 @@ import auditoriaRoutes from './routes/auditoria.routes';
 import { DIR_UPLOADS } from './config/uploads';
 
 const app = express();
+if (process.env.NODE_ENV === 'production') app.set('trust proxy', 1); // detrás de Caddy
 
 app.use(helmet());
 app.use(cors({ origin: 'http://localhost:5173', credentials: true })); // el frontend de Vite

@@ -10,6 +10,7 @@ import Sucursales from './paginas/admin/Sucursales';
 import Categorias from './paginas/admin/Categorias';
 import Descuentos from './paginas/admin/Descuentos';
 import Usuarios from './paginas/admin/Usuarios';
+import Auditoria from './paginas/admin/Auditoria';
 import MiClave from './paginas/admin/MiClave';
 
 export default function App() {
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="categorias" element={<RutaProtegida roles={["OWNER"]}><Categorias /></RutaProtegida>} />
         <Route path="descuentos" element={<Descuentos />} />
         <Route path="usuarios" element={<RutaProtegida roles={["OWNER"]}><Usuarios /></RutaProtegida>} />
+        <Route path="auditoria" element={<RutaProtegida roles={["OWNER"]}><Auditoria /></RutaProtegida>} />
         <Route path="mi-clave" element={<MiClave />} />
       </Route>
       <Route path="*" element={<p className="aviso">Página no encontrada.</p>} />

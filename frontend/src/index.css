@@ -156,3 +156,15 @@ body {
 .estado-vigente { background: #d8f0dc; color: #1b5e20; }
 .estado-programado { background: #fdf0cc; color: #7a5a00; }
 .estado-vencido { background: #e6e1d8; color: var(--suave); }
+
+/* ---------- Auditoría ---------- */
+.accion-crear { background: #d8f0dc; color: #1b5e20; }
+.accion-editar { background: #fdf0cc; color: #7a5a00; }
+.accion-eliminar { background: #f8d7da; color: #8a1c28; }
+.tabla-scroll { overflow-x: auto; }
+.paginacion { display: flex; align-items: center; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+.paginacion button {
+  padding: 8px 12px; font: inherit; cursor: pointer;
+  border: none; border-radius: 6px; background: var(--acento); color: #fff;
+}
+.paginacion button:disabled { opacity: 0.4; cursor: not-allowed; }
