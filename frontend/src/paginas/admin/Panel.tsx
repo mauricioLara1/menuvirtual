@@ -19,7 +19,8 @@ export default function Panel() {
     ? (sucursales.data?.find((s) => s.id === elegida)?.id ?? sucursales.data?.[0]?.id ?? null)
     : (usuario?.sucursal_id ?? null);
 
-  const contexto: ContextoPanel = { sucursalId };
+  const sinSucursales = esOwner && sucursales.isSuccess && sucursales.data.length === 0;
+  const contexto: ContextoPanel = { sucursalId, sinSucursales };
 
   async function salir() {
     await cerrarSesion();

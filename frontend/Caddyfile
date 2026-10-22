@@ -1,0 +1,36 @@
+# SITE_ADDRESS: el dominio del cliente (Caddy saca el certificado HTTPS solo).
+# Para pruebas locales sin HTTPS se usa ":80".
+{$SITE_ADDRESS:localhost} {
+	encode zstd gzip
+
+	header {
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+
+	# La API y las fotos viven detrás del mismo dominio (la cookie lo necesita)
+	handle /api/* {
+		reverse_proxy api:3000
+	}
+	handle /uploads/* {
+		reverse_proxy api:3000
+	}
+
+	# Archivos compilados: su nombre lleva un hash que cambia si cambia el contenido,
+	# así que se pueden guardar en el navegador un año
+	handle /assets/* {
+		root * /srv
+		header Cache-Control "public, max-age=31536000, immutable"
+		file_server
+	}
+
+	# Todo lo demás: la app React (rutas como /menu/1 o /admin devuelven index.html)
+	handle {
+		root * /srv
+		header Cache-Control "no-cache"
+		try_files {path} /index.html
+		file_server
+	}
+}

@@ -64,6 +64,10 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
 });
 
 const PORT = Number(process.env.PORT) || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, (err?: Error) => {
+  if (err) {
+    console.error('No se pudo abrir el puerto', PORT, '-', err.message);
+    process.exit(1);
+  }
   console.log(`API escuchando en http://localhost:${PORT}`);
 });

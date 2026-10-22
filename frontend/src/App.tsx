@@ -9,6 +9,7 @@ import FormularioProducto from './paginas/admin/FormularioProducto';
 import Sucursales from './paginas/admin/Sucursales';
 import Categorias from './paginas/admin/Categorias';
 import Descuentos from './paginas/admin/Descuentos';
+import RequiereSucursal from './componentes/RequiereSucursal';
 import Usuarios from './paginas/admin/Usuarios';
 import Auditoria from './paginas/admin/Auditoria';
 import MiClave from './paginas/admin/MiClave';
@@ -28,12 +29,12 @@ export default function App() {
         }
       >
         <Route index element={<Navigate to="productos" replace />} />
-        <Route path="productos" element={<ListaProductos />} />
-        <Route path="productos/nuevo" element={<FormularioProducto />} />
-        <Route path="productos/:id/editar" element={<FormularioProducto />} />
+        <Route path="productos" element={<RequiereSucursal><ListaProductos /></RequiereSucursal>} />
+        <Route path="productos/nuevo" element={<RequiereSucursal><FormularioProducto /></RequiereSucursal>} />
+        <Route path="productos/:id/editar" element={<RequiereSucursal><FormularioProducto /></RequiereSucursal>} />
         <Route path="sucursales" element={<RutaProtegida roles={["OWNER"]}><Sucursales /></RutaProtegida>} />
         <Route path="categorias" element={<RutaProtegida roles={["OWNER"]}><Categorias /></RutaProtegida>} />
-        <Route path="descuentos" element={<Descuentos />} />
+        <Route path="descuentos" element={<RequiereSucursal><Descuentos /></RequiereSucursal>} />
         <Route path="usuarios" element={<RutaProtegida roles={["OWNER"]}><Usuarios /></RutaProtegida>} />
         <Route path="auditoria" element={<RutaProtegida roles={["OWNER"]}><Auditoria /></RutaProtegida>} />
         <Route path="mi-clave" element={<MiClave />} />
