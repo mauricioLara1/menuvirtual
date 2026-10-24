@@ -188,3 +188,8 @@ docs/                   arquitectura y decisiones
 docker-compose.yml      desarrollo (base de datos y pgAdmin)
 docker-compose.prod.yml producción (base de datos, API y Caddy)
 ```
+
+## Licencia
+
+Software propietario. Todos los derechos reservados (ver [LICENSE](LICENSE)).
+El uso en producción requiere una licencia firmada con el titular.
